@@ -21,6 +21,7 @@
 		B401F98C2587D26300368009 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B401F98B2587D26300368009 /* Alamofire */; };
 		B401F98E2587D72000368009 /* APIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401F98D2587D72000368009 /* APIProvider.swift */; };
 		B401F9912587D75A00368009 /* WSResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401F9902587D75A00368009 /* WSResponse.swift */; };
+		B451DCA52587FB4B00F17926 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B451DCA42587FB4B00F17926 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		B401F9882587CFFA00368009 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B401F98D2587D72000368009 /* APIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIProvider.swift; sourceTree = "<group>"; };
 		B401F9902587D75A00368009 /* WSResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSResponse.swift; sourceTree = "<group>"; };
+		B451DCA42587FB4B00F17926 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 		B401F97E2587B4AF00368009 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B451DCA42587FB4B00F17926 /* UIViewController+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 		B401F97F2587B4F900368009 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				B451DCA62587FD9800F17926 /* Config */,
 				B401F98F2587D74900368009 /* CommonResponse */,
 				B401F9802587B51800368009 /* APIRouter.swift */,
 				B401F9822587B52000368009 /* APIClient.swift */,
@@ -261,7 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				B401F9872587CFE000368009 /* Constants */,
-				B401F9852587CF7D00368009 /* Config.swift */,
+				B451DCA72587FDA600F17926 /* Loading Manager */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -280,6 +284,21 @@
 				B401F9902587D75A00368009 /* WSResponse.swift */,
 			);
 			path = CommonResponse;
+			sourceTree = "<group>";
+		};
+		B451DCA62587FD9800F17926 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				B401F9852587CF7D00368009 /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		B451DCA72587FDA600F17926 /* Loading Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Loading Manager";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +379,7 @@
 			files = (
 				B401F9912587D75A00368009 /* WSResponse.swift in Sources */,
 				B401F9782587ADCB00368009 /* MainViewController.swift in Sources */,
+				B451DCA52587FB4B00F17926 /* UIViewController+Ext.swift in Sources */,
 				B401F9832587B52000368009 /* APIClient.swift in Sources */,
 				B401F9812587B51800368009 /* APIRouter.swift in Sources */,
 				B401F97A2587AF1800368009 /* MainView.swift in Sources */,

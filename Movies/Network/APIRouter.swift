@@ -56,7 +56,7 @@ enum APIRouter: URLRequestConvertible {
 
     // MARK: - ParameterEncoding
     private var encoder: ParameterEncoding {
-        return JSONEncoding()
+        return URLEncoding()
     }
 
     // MARK: - Parameters
@@ -91,7 +91,6 @@ enum APIRouter: URLRequestConvertible {
         } catch {
             throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
         }
-        
 
         return urlRequest
     }

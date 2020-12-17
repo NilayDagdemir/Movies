@@ -29,7 +29,7 @@ class APIProvider: NSObject {
                                       onError: OnError? = nil) -> DataRequest {
         return getRequest(route, decoder, onSuccess, onError)
     }
-
+//https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc?&api_key=75da63446392532806d68cbf9cf68d77
     func getRequest<T: Decodable>(_ route: URLRequestConvertible,
                                   _ decoder: DataDecoder = JSONDecoder(),
                                   _ onSuccess: OnSuccess<T>,
@@ -56,7 +56,7 @@ class APIProvider: NSObject {
                             let wsError = try JSONDecoder().decode(WSError.self, from: data)
                             onError(wsError)
                         } catch let error {
-                            print("TODO: here log error?")
+                            print("An error occured: \(error.localizedDescription)")
                             // Same as HTTP 500 case
                             onError(nil)
                         }

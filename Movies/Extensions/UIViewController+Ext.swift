@@ -9,13 +9,6 @@
 import UIKit
 
 extension UIViewController {
-    func showErrorDialog(with message: String) {
-        let alert = UIAlertController(title: "Uyarı", message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-
-    }
-
     func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self,
                          action: #selector(hideKeyboard))

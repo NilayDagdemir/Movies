@@ -15,12 +15,11 @@ open class AppRouter {
     var window: UIWindow?
 
     func start() {
-        let starterViewController = MainViewController()
-        let navigationController = UINavigationController(rootViewController: starterViewController)
+        let viewController = MainRouter.setupModule()
+        let navigationController = UINavigationController(rootViewController: viewController)
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = .white
-        window?.makeKeyAndVisible()
         window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
     }
 }

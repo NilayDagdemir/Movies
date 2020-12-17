@@ -28,10 +28,10 @@ class Constants {
     }
 
     // MARK: MovieListCollectionViewCellTypes
-    enum MovieListCollectionViewCellTypes: Int {
-        case güncellenecek
-        case güncellenecek2
-        case güncellenecek3
+    enum MovieListCollectionViewCellTypes: String {
+        case movieCell = "MovieCell"
+        case personCell = "PersonCell"
+        case genreCell = "GenreCell"
     }
 }
 

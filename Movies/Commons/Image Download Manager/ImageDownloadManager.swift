@@ -6,7 +6,7 @@
 //  Copyright © 2020 Eda Nilay DAĞDEMİR. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import SDWebImage
 
 class ImageDownloadManager: NSObject {
@@ -31,6 +31,7 @@ class ImageDownloadManager: NSObject {
 
          - parameters:
          - url: The URL to the image
+         - placeholder: A placeholder for the image
          - options: A mask to specify options to use for this request
          - progressBlock: A block called while image is downloading
          - completedBlock: A block called when operation has been completed.
@@ -41,6 +42,9 @@ class ImageDownloadManager: NSObject {
                               options: options) { (downloadedImage, _, _, _) in
             if downloadedImage != nil {
                 imageView.image = downloadedImage
+            } else {
+                // No image exists view.
+                imageView.image = #imageLiteral(resourceName: "icon_no_image")
             }
         }
     }

@@ -10,6 +10,7 @@ import Foundation
 
 protocol ISearchView: IBaseView {
     func reloadTableView()
+    func closeSearchBar()
 }
 
 protocol ISearchPresenter: IBasePresenter {
@@ -18,11 +19,11 @@ protocol ISearchPresenter: IBasePresenter {
 }
 
 protocol ISearchInteractor: class {
-    // TODO: Declare use case methods
+    func searchMovies(with searchText: String)
 }
 
-protocol ISearchInteractorToPresenter: class {
-    // TODO: Declare interactor output methods
+protocol ISearchInteractorToPresenter: IBaseInteractorToPresenter {
+    func movieListFiltered(_ filteredList: [Movie])
 }
 
 protocol ISearchRouter: class {

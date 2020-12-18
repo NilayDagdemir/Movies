@@ -38,7 +38,7 @@ class MovieTableViewCell: UITableViewCell {
 
         movieTitleLabel.text = movieItem.title
         detailsImageView.image = #imageLiteral(resourceName: "icon_details")
-        overviewTextView.text = movieItem.overview
+        overviewTextView.text = movieItem.overview == "" ? "**No overview exists for this one**" : movieItem.overview
         languageLabel.text = movieItem.language
         releaseDateLabel.text = movieItem.releaseDate
 
@@ -55,6 +55,7 @@ class MovieTableViewCell: UITableViewCell {
         movieImageView.layer.cornerRadius = 10
         movieImageView.clipsToBounds = true
         movieImageView.contentMode = .scaleToFill
+        overviewTextView.isEditable = false
 
         contentView.add(subviews: movieImageView, movieTitleLabel, detailsImageView, overviewTextView, languageLabel, releaseDateLabel)
         setupConstraints()
@@ -83,7 +84,6 @@ class MovieTableViewCell: UITableViewCell {
         movieTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         movieTitleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
         movieTitleLabel.trailingAnchor.constraint(equalTo: detailsImageView.leadingAnchor, constant: -20).isActive = true
-//        movieTitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
 
     private func setDetailsImageViewConstraints() {

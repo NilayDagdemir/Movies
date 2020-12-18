@@ -23,12 +23,10 @@ extension SearchPresenter: ISearchPresenter {
     func viewDidLoad() {}
     
     func filterItems(with searchText: String) {
+        view?.closeSearchBar()
         if searchText != "" {
-            // do the filtering
-//            filteredMovies = filtrelenenElemanlar
-            print("here search text is: \(searchText)")
-        } else {
-            view?.showErrorDialog(with: "Please enter a movie, genre, or person name.")
+            view?.showProgressHUD()
+            interactor?.searchMovies(with: searchText)
         }
     }
 
@@ -38,5 +36,14 @@ extension SearchPresenter: ISearchPresenter {
 }
 
 extension SearchPresenter: ISearchInteractorToPresenter {
-    // TODO: implement interactor output methods
+    func wsErrorOccurred(with message: String) {
+        view?.hideProgressHUD()
+        view?.showErrorDialog(with: message)
+    }
+    
+    func movieListFiltered(_ filteredList: [Movie]) {
+        self.filteredMovies = filteredList
+        view?.hideProgressHUD()
+        view?.reloadTableView()
+    }
 }

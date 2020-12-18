@@ -21,17 +21,15 @@ import Foundation
 enum APIRouter: URLRequestConvertible {
 
     case getPopularMovies
-    case searchMovies
+    case searchMovies(_ searchQuery: String)
     case getMovieDetails
     case getActorDetails
 
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .getPopularMovies, .getMovieDetails, .getActorDetails:
+        case .getPopularMovies, .searchMovies, .getMovieDetails, .getActorDetails:
             return .get
-        case .searchMovies:
-            return .post
         }
     }
 
@@ -65,6 +63,9 @@ enum APIRouter: URLRequestConvertible {
         case .getPopularMovies:
             return ["api_key": Config.apiKey,
                     "sort_by": "popularity.desc"]
+        case .searchMovies(let searchQuery):
+            return ["api_key": Config.apiKey,
+                    "query": searchQuery]
         default:
             return nil
         }

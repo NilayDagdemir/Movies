@@ -22,6 +22,7 @@ class SearchRouter {
         let presenter = SearchPresenter()
         let router = SearchRouter()
         let interactor = SearchInteractor()
+        let networkAPI = APIClient()
         let adapter = SearchTableViewAdapter(presenter: presenter)
 
         viewController.presenter =  presenter
@@ -34,6 +35,7 @@ class SearchRouter {
         router.view = viewController
 
         interactor.output = presenter
+        interactor.networkAPI = networkAPI
 
         return viewController
     }

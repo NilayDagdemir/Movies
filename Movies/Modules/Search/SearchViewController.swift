@@ -49,13 +49,6 @@ class SearchViewController: UIViewController {
         filteredMovieListTableView?.pinToEdges(to: view)
     }
 
-    private func closeSearchBar() {
-        searchBar.resignFirstResponder()
-        navigationItem.titleView = nil
-        searchBar.showsCancelButton = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
-    }
-
     @objc func showSearchBar() {
         searchBar.becomeFirstResponder()
         navigationItem.titleView = searchBar
@@ -68,6 +61,13 @@ extension SearchViewController: ISearchView {
     func reloadTableView() {
         filteredMovieListTableView?.reloadData()
     }
+
+    func closeSearchBar() {
+        searchBar.resignFirstResponder()
+        navigationItem.titleView = nil
+        searchBar.showsCancelButton = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -76,7 +76,11 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        presenter?.filterItems(with: searchBar.text ?? "")
+        if searchBar.text != "" {
+            presenter?.filterItems(with: searchBar.text ?? "")
+        } else {
+            showErrorDialog(with: "Please enter a movie, genre, or person name.")
+        }
     }
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {

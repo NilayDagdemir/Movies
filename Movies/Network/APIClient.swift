@@ -15,12 +15,19 @@ protocol APIClientInterface {
     typealias OnError = ((WSError?) -> Void)?
 
     func getPopularMovies(onSuccess: @escaping OnSuccess<TMDBListMovieResponse>, onError: OnError)
+    func searchMovies(with searchQuery: String, onSuccess: @escaping OnSuccess<TMDBListMovieResponse>, onError: OnError)
 }
 
 
 class APIClient: APIClientInterface {
     func getPopularMovies(onSuccess: @escaping OnSuccess<TMDBListMovieResponse>, onError: OnError) {
         APIProvider.shared.performRequest(route: .getPopularMovies,
+                                          onSuccess: onSuccess,
+                                          onError: onError)
+    }
+
+    func searchMovies(with searchQuery: String, onSuccess: @escaping OnSuccess<TMDBListMovieResponse>, onError: OnError) {
+        APIProvider.shared.performRequest(route: .searchMovies(searchQuery),
                                           onSuccess: onSuccess,
                                           onError: onError)
     }

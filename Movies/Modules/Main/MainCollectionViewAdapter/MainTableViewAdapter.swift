@@ -48,15 +48,11 @@ extension MainTableViewAdapter: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        guard let movieItem = model.movieItem(at: indexPath), let id = movieItem.id else {
-//            tableView.deselectRow(at: indexPath, animated: true)
-//            return
-//        }
-//        let controller = MovieDeatilsVC(movieId: id)
-//        controller.hidesBottomBarWhenPushed = true
-//        navigationController?.pushViewController(controller, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        presenter.movieItemClicked(with: getMovieList()[indexPath.row])
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220

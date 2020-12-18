@@ -28,11 +28,6 @@ class MovieTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        clipsToBounds = true
-    }
-
     func setup(with movieItem: Movie) {
         self.movieItem = movieItem
 
@@ -43,7 +38,7 @@ class MovieTableViewCell: UITableViewCell {
         releaseDateLabel.text = movieItem.releaseDate
 
         if let posterPath = movieItem.posterPath {
-            ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath), imageView: movieImageView)
+            ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath, resolution: Constants.PosterProperties.low.resolution), imageView: movieImageView)
         }
     }
 
@@ -115,5 +110,4 @@ class MovieTableViewCell: UITableViewCell {
         releaseDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         releaseDateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
-
 }

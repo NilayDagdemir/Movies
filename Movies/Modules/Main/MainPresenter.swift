@@ -43,4 +43,8 @@ extension MainPresenter: IMainInteractorToPresenter {
         view?.hideProgressHUD()
         view?.reloadTableView()
     }
+
+    func movieItemClicked(with item: Movie) {
+        router?.navigateToMovieDetailScreen(of: item)
+    }
 }

@@ -12,6 +12,19 @@ class Constants {
     struct Error {
         static let defaultErrorMessage: String = "An error occured. Please try again later."
     }
+
+    // MARK: Common
+    enum PosterProperties: String {
+        case low, high
+
+        var resolution: String {
+            switch self {
+            case .low: return "w300"
+            case .high: return "w780"
+            }
+        }
+    }
+
     // MARK: Main
     struct Main {
         // MARK: Navigation Bar

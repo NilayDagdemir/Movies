@@ -15,6 +15,7 @@ protocol IMainView: IBaseView {
 protocol IMainPresenter: IBasePresenter {
     func getMovieList() -> [Movie]
     func movieCardClicked(with movieItem: Movie)
+    func movieItemClicked(with item: Movie)
 }
 
 protocol IMainInteractor: class {

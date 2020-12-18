@@ -1,5 +1,5 @@
 //
-//  Movie.swift
+//  MovieList.swift
 //  Movies
 //
 //  Created by Eda Nilay DAĞDEMİR on 14.12.2020.
@@ -8,13 +8,9 @@
 
 import Foundation
 
-// MARK: - TMDBMovieResponse
-struct TMDBListMovieResponse: Codable {
+// MARK: - MovieList
+struct MovieList: Codable {
     let results: [Movie]?
-
-    enum CodingKeys: String, CodingKey {
-        case results
-    }
 }
 
 // MARK: - Movie

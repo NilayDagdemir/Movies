@@ -22,13 +22,15 @@ enum APIRouter: URLRequestConvertible {
 
     case getPopularMovies
     case searchMovies(_ searchQuery: String)
-    case getMovieDetails
-    case getActorDetails
+    case getMovieDetails(_ movieId: Int)
+    case getCast(_ movieId: Int)
+    case getPersonDetails(_ personId: Int)
+    case getVideos(_ movieId: Int)
 
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
         switch self {
-        case .getPopularMovies, .searchMovies, .getMovieDetails, .getActorDetails:
+        case .getPopularMovies, .searchMovies, .getMovieDetails, .getCast, .getPersonDetails, .getVideos:
             return .get
         }
     }
@@ -40,10 +42,14 @@ enum APIRouter: URLRequestConvertible {
             return "discover/movie"
         case .searchMovies:
             return "search/movie"
-        case .getMovieDetails:
-            return "movie"
-        case .getActorDetails:
-            return "person"
+        case .getMovieDetails(let movieId):
+            return "movie/\(movieId)"
+        case .getCast(let movieId):
+            return "movie/\(movieId)/credits"
+        case .getPersonDetails(let personId):
+            return "person/\(personId)"
+        case .getVideos(let movieId):
+            return "movie/\(movieId)/videos"
         }
     }
 
@@ -60,14 +66,15 @@ enum APIRouter: URLRequestConvertible {
     // MARK: - Parameters
     private var parameters: Parameters? {
         switch self {
+            // api key parametrelerini tekilleştir.
         case .getPopularMovies:
             return ["api_key": Config.apiKey,
                     "sort_by": "popularity.desc"]
         case .searchMovies(let searchQuery):
             return ["api_key": Config.apiKey,
                     "query": searchQuery]
-        default:
-            return nil
+        case .getMovieDetails, .getCast, .getPersonDetails, .getVideos:
+            return ["api_key": Config.apiKey]
         }
     }
 
@@ -92,7 +99,6 @@ enum APIRouter: URLRequestConvertible {
         } catch {
             throw AFError.parameterEncodingFailed(reason: .jsonEncodingFailed(error: error))
         }
-
         return urlRequest
     }
 

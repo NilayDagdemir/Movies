@@ -41,6 +41,11 @@ class MainRouter {
 
 extension MainRouter: IMainRouter {
     func navigateToMovieDetailScreen(of movieItem: Movie) {
-        // navigate to movie detail screen
+        if let id = movieItem.id {
+            let vc = MovieDetailRouter.setupModule(with: id)
+            view?.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            view?.showErrorDialog(with: Constants.Error.defaultErrorMessage)
+        }
     }
 }

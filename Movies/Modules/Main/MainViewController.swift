@@ -14,7 +14,13 @@ class MainViewController: UIViewController {
     var presenter: IMainPresenter?
     var adapter: MainTableViewAdapter?
 
-    private var movieListTableView: UITableView?
+    lazy var movieListTableView: UITableView = {
+        let tableView = UITableView(frame: view.frame)
+        tableView.backgroundColor = .paleGrey
+        tableView.separatorStyle = .singleLine
+
+        return tableView
+    }()
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -29,22 +35,19 @@ class MainViewController: UIViewController {
     }
 
     private func setupTableView() {
-        movieListTableView = UITableView(frame: view.frame)
-        movieListTableView?.backgroundColor = .paleGrey
-        movieListTableView?.separatorStyle = .singleLine
-        view.addSubview(movieListTableView ?? UITableView())
+        view.addSubview(movieListTableView)
 
-        movieListTableView?.delegate = adapter
-        movieListTableView?.dataSource = adapter
-        movieListTableView?.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.nameOfClass)
+        movieListTableView.delegate = adapter
+        movieListTableView.dataSource = adapter
+        movieListTableView.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.nameOfClass)
 
-        movieListTableView?.pinToEdges(to: view)
+        movieListTableView.pinToEdges(to: view)
     }
 }
 
 extension MainViewController: IMainView {
     func reloadTableView() {
-        movieListTableView?.reloadData()
+        movieListTableView.reloadData()
     }
 }
 

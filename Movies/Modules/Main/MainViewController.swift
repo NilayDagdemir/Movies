@@ -30,16 +30,14 @@ class MainViewController: UIViewController {
 
     private func setupTableView() {
         movieListTableView = UITableView(frame: view.frame)
-        movieListTableView?.rowHeight = 188
         movieListTableView?.backgroundColor = .paleGrey
         movieListTableView?.separatorStyle = .singleLine
-
         view.addSubview(movieListTableView ?? UITableView())
 
         movieListTableView?.delegate = adapter
         movieListTableView?.dataSource = adapter
-        movieListTableView?.register(MovieTableViewCell.self, forCellWithReuseIdentifier: MovieTableViewCell.nameOfClass)
-        
+        movieListTableView?.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.nameOfClass)
+
         movieListTableView?.pinToEdges(to: view)
     }
 }

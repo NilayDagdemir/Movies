@@ -21,11 +21,6 @@ extension MainTableViewAdapter: IBaseAdapter {
         return getMovieList().count
     }
 
-    func sectionCount() -> Int {
-        // filteredItems a göre section sayısı belirlenecek.
-        return 1
-    }
-
     func getMovieList() -> [Movie] {
         return presenter.getMovieList()
     }
@@ -51,5 +46,19 @@ extension MainTableViewAdapter: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        guard let movieItem = model.movieItem(at: indexPath), let id = movieItem.id else {
+//            tableView.deselectRow(at: indexPath, animated: true)
+//            return
+//        }
+//        let controller = MovieDeatilsVC(movieId: id)
+//        controller.hidesBottomBarWhenPushed = true
+//        navigationController?.pushViewController(controller, animated: true)
+//    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 220
     }
 }

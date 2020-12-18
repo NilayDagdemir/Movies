@@ -38,14 +38,13 @@ class SearchViewController: UIViewController {
 
     private func setupTableView() {
         filteredMovieListTableView = UITableView(frame: view.frame)
-        filteredMovieListTableView?.rowHeight = 188
         filteredMovieListTableView?.backgroundColor = .paleGrey
 
         view.addSubview(filteredMovieListTableView ?? UITableView())
 
         filteredMovieListTableView?.delegate = adapter
         filteredMovieListTableView?.dataSource = adapter
-        filteredMovieListTableView?.register(MovieTableViewCell.self, forCellWithReuseIdentifier: MovieTableViewCell.nameOfClass)
+        filteredMovieListTableView?.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.nameOfClass)
 
         filteredMovieListTableView?.pinToEdges(to: view)
     }
@@ -66,7 +65,9 @@ class SearchViewController: UIViewController {
 }
 
 extension SearchViewController: ISearchView {
-    // TODO: implement view output methods
+    func reloadTableView() {
+        filteredMovieListTableView?.reloadData()
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -80,11 +81,5 @@ extension SearchViewController: UISearchBarDelegate {
 
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         presenter?.filterItems(with: searchBar.text ?? "")
-    }
-}
-
-extension SearchViewController: ISearchView {
-    func reloadTableView() {
-        filteredMovieListTableView?.reloadData()
     }
 }

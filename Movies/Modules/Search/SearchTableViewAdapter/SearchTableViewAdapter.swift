@@ -17,7 +17,7 @@ class SearchTableViewAdapter: NSObject {
 }
 
 extension SearchTableViewAdapter: IBaseAdapter {
-    func itemCount(on section: Int) -> Int {
+    func itemCount() -> Int {
         getFilteredMovies().count
     }
 
@@ -30,7 +30,7 @@ extension SearchTableViewAdapter: UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemCount(on: section)
+        return itemCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,5 +46,9 @@ extension SearchTableViewAdapter: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
 }

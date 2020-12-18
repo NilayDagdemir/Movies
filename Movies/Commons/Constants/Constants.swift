@@ -20,18 +20,8 @@ class Constants {
         // MARK: SearchBar
         static let searchBarPlaceholder: String = "Enter a movie, person, or genre name."
 
-        // MARK: Movies Collection View
-        static let moviesCollectionViewMinLineSpacing: CGFloat = 8.0
-
         // MARK: Movie Not Found Popup
         static let movieNotFoundPopupMessage: String = "Movie not found."
-    }
-
-    // MARK: MovieListCollectionViewCellTypes
-    enum MovieListCollectionViewCellTypes: String {
-        case movieCell = "MovieCell"
-        case personCell = "PersonCell"
-        case genreCell = "GenreCell"
     }
 }
 

@@ -16,10 +16,9 @@ open class AppRouter {
 
     func start() {
         let viewController = TabBarViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navigationController
+        window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }
 }

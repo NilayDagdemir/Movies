@@ -28,6 +28,11 @@ class MovieTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        clipsToBounds = true
+    }
+
     func setup(with movieItem: Movie) {
         self.movieItem = movieItem
 
@@ -44,6 +49,9 @@ class MovieTableViewCell: UITableViewCell {
 
     private func configureUI() {
         backgroundColor = .paleGrey
+        preservesSuperviewLayoutMargins = false
+        separatorInset = UIEdgeInsets.zero
+        layoutMargins = UIEdgeInsets.zero
         movieImageView.layer.cornerRadius = 10
         movieImageView.clipsToBounds = true
         movieImageView.contentMode = .scaleToFill
@@ -63,9 +71,9 @@ class MovieTableViewCell: UITableViewCell {
 
     private func setImageConstraints() {
         movieImageView.translatesAutoresizingMaskIntoConstraints = false
-        movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-        movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5).isActive = true
+        movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         movieImageView.heightAnchor.constraint(equalToConstant: 188).isActive = true
         movieImageView.widthAnchor.constraint(equalToConstant: 125).isActive = true
     }
@@ -75,7 +83,7 @@ class MovieTableViewCell: UITableViewCell {
         movieTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         movieTitleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
         movieTitleLabel.trailingAnchor.constraint(equalTo: detailsImageView.leadingAnchor, constant: -20).isActive = true
-        movieTitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+//        movieTitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
 
     private func setDetailsImageViewConstraints() {
@@ -91,21 +99,20 @@ class MovieTableViewCell: UITableViewCell {
         overviewTextView.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 5).isActive = true
         overviewTextView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
         overviewTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        overviewTextView.bottomAnchor.constraint(lessThanOrEqualTo: languageLabel.topAnchor, constant: 15).isActive = true
+        overviewTextView.bottomAnchor.constraint(lessThanOrEqualTo: languageLabel.topAnchor, constant: -10).isActive = true
     }
 
     private func setLanguageLabelConstraints() {
         languageLabel.translatesAutoresizingMaskIntoConstraints = false
         languageLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
-        languageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
-        languageLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        languageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
     }
 
     private func setReleaseDateLabelConstraints() {
         releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
         releaseDateLabel.topAnchor.constraint(equalTo: overviewTextView.bottomAnchor, constant: 15).isActive = true
         releaseDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-        releaseDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
+        releaseDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
         releaseDateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
 

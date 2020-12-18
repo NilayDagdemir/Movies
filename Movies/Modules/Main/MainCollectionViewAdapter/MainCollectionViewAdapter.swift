@@ -17,13 +17,22 @@ class MainCollectionViewAdapter: NSObject {
 }
 
 extension MainCollectionViewAdapter: IBaseAdapter {
-    func itemCount() -> Int {
-//        return presenter.getMovieList().count
-        return 1
+    func itemCount(on section: Int) -> Int {
+        switch section {
+        case 0:
+            return getMovieList().count
+        case 1:
+            return 0
+        case 2:
+            return 0
+        default:
+            return 0
+        }
     }
 
     func sectionCount() -> Int {
-        return 1 // update here
+        // filteredItems a göre section sayısı belirlenecek.
+        return 1
     }
 
     func getMovieList() -> [Movie] {
@@ -32,20 +41,35 @@ extension MainCollectionViewAdapter: IBaseAdapter {
 }
 
 extension MainCollectionViewAdapter: UICollectionViewDelegate, UICollectionViewDataSource {
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sectionCount()
+    }
+
     // MARK: - Collection view data source
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        itemCount()
+        return itemCount(on: section)
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return setupMovieCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
+        let section = indexPath.section
+//        switch section {
+//        case 0:
+            return setupMovieCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
+//        case 1:
+//            return UICollectionViewCell()
+//        case 2:
+//            return UICollectionViewCell()
+//        default:
+//            return UICollectionViewCell()
+//        }
     }
 
     private func setupMovieCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
         let identifier = MovieCollectionViewCell.nameOfClass
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         if let cell = cell as? MovieCollectionViewCell {
-//            cell.setup(with: getMovieList()[indexPath.row])
+            cell.setup(with: getMovieList()[indexPath.row])
 
             return cell
         }

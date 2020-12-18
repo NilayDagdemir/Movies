@@ -29,7 +29,7 @@ class APIProvider: NSObject {
                                       onError: OnError? = nil) -> DataRequest {
         return getRequest(route, decoder, onSuccess, onError)
     }
-//https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc?&api_key=75da63446392532806d68cbf9cf68d77
+
     func getRequest<T: Decodable>(_ route: URLRequestConvertible,
                                   _ decoder: DataDecoder = JSONDecoder(),
                                   _ onSuccess: OnSuccess<T>,

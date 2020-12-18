@@ -13,7 +13,6 @@ struct Config {
     static let baseURL: String = "https://api.themoviedb.org/3/"
     static let basePosterURL: String = "http://image.tmdb.org/t/p"
     static func getPosterURL(with url: String) -> String {
-//        w780
-        return "\(basePosterURL)/\(url)"
+        return "\(basePosterURL)/w780\(url)"
     }
 }

@@ -19,7 +19,6 @@ class MainPresenter {
 
 extension MainPresenter: IMainPresenter {
     func viewDidLoad() {
-        print("here presenter")
         view?.showProgressHUD()
         interactor?.retrieveMovieList()
     }

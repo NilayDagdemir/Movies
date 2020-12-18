@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4000158258CAD940048868C /* UITextView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4000157258CAD940048868C /* UITextView+Ext.swift */; };
 		B401F9502587A94100368009 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B401F94F2587A94100368009 /* AppDelegate.swift */; };
 		B401F9592587A94200368009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B401F9582587A94200368009 /* Assets.xcassets */; };
 		B401F95C2587A94200368009 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B401F95A2587A94200368009 /* LaunchScreen.storyboard */; };
@@ -25,6 +26,9 @@
 		B4E49AC42589356000741824 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E49AC32589356000741824 /* MovieCollectionViewCell.swift */; };
 		B4E49AC62589356F00741824 /* PersonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E49AC52589356F00741824 /* PersonCollectionViewCell.swift */; };
 		B4E49AC82589357900741824 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E49AC72589357900741824 /* GenreCollectionViewCell.swift */; };
+		B4F3414B258C2D46000BF2CC /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3414A258C2D46000BF2CC /* UIColor+Ext.swift */; };
+		B4F3414D258C3418000BF2CC /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3414C258C3418000BF2CC /* UILabel+Ext.swift */; };
+		B4F3414F258C342D000BF2CC /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3414E258C342D000BF2CC /* UIImageView+Ext.swift */; };
 		B4F5911B258A5AD90067BDBD /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = B4F5911A258A5AD90067BDBD /* SDWebImage */; };
 		B4F5911E258A5B560067BDBD /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F5911D258A5B560067BDBD /* ImageDownloadManager.swift */; };
 		B4F59120258A93DA0067BDBD /* NSObject+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F5911F258A93DA0067BDBD /* NSObject+Ext.swift */; };
@@ -39,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B4000157258CAD940048868C /* UITextView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Ext.swift"; sourceTree = "<group>"; };
 		B401F94C2587A94100368009 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B401F94F2587A94100368009 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B401F9582587A94200368009 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,6 +63,9 @@
 		B4E49AC32589356000741824 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4E49AC52589356F00741824 /* PersonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4E49AC72589357900741824 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
+		B4F3414A258C2D46000BF2CC /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		B4F3414C258C3418000BF2CC /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		B4F3414E258C342D000BF2CC /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		B4F5911D258A5B560067BDBD /* ImageDownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		B4F5911F258A93DA0067BDBD /* NSObject+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Ext.swift"; sourceTree = "<group>"; };
 		B4F59122258AA5560067BDBD /* MainContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContract.swift; sourceTree = "<group>"; };
@@ -248,6 +256,10 @@
 				B4E49ABC2589303C00741824 /* UIView+Ext.swift */,
 				B4F5911F258A93DA0067BDBD /* NSObject+Ext.swift */,
 				B4BDE570258B55F900120EFA /* String+Ext.swift */,
+				B4F3414A258C2D46000BF2CC /* UIColor+Ext.swift */,
+				B4F3414C258C3418000BF2CC /* UILabel+Ext.swift */,
+				B4F3414E258C342D000BF2CC /* UIImageView+Ext.swift */,
+				B4000157258CAD940048868C /* UITextView+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -438,6 +450,7 @@
 				B401F9832587B52000368009 /* APIClient.swift in Sources */,
 				B4F5911E258A5B560067BDBD /* ImageDownloadManager.swift in Sources */,
 				B4E49AC62589356F00741824 /* PersonCollectionViewCell.swift in Sources */,
+				B4000158258CAD940048868C /* UITextView+Ext.swift in Sources */,
 				B4F5912A258AA5560067BDBD /* MainRouter.swift in Sources */,
 				B401F9812587B51800368009 /* APIRouter.swift in Sources */,
 				B401F9652587A9A600368009 /* AppRouter.swift in Sources */,
@@ -448,6 +461,9 @@
 				B401F98E2587D72000368009 /* APIProvider.swift in Sources */,
 				B4F59129258AA5560067BDBD /* MainPresenter.swift in Sources */,
 				B4BDE571258B55F900120EFA /* String+Ext.swift in Sources */,
+				B4F3414D258C3418000BF2CC /* UILabel+Ext.swift in Sources */,
+				B4F3414F258C342D000BF2CC /* UIImageView+Ext.swift in Sources */,
+				B4F3414B258C2D46000BF2CC /* UIColor+Ext.swift in Sources */,
 				B4E49AC42589356000741824 /* MovieCollectionViewCell.swift in Sources */,
 				B4F59131258AA5F00067BDBD /* MainCollectionViewAdapter.swift in Sources */,
 				B401F9862587CF7D00368009 /* Config.swift in Sources */,

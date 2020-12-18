@@ -9,20 +9,27 @@
 import UIKit
 
 class MovieCollectionViewCell: UICollectionViewCell {
-    private var movieImageView = UIImageView()
-    private var movieTitleLabel = UILabel()
-//    private var overviewTextView = UITextView()
-//    private var languageLabel = UILabel()
-//    private var releaseDateLabel = UILabel()
-    private var posterPath: String = ""
+    private var movieImageView = UIImageView(contentMode: .scaleToFill)
+    private var movieTitleLabel = UILabel(font: .systemFont(ofSize: 18, weight: .semibold))
+    private var detailsImageView = UIImageView(contentMode: .scaleAspectFit)
+    private var overviewTextView = UITextView(font: .systemFont(ofSize: 14, weight: .light), textColor: .darkGray)
+    private var languageLabel = UILabel(font: .italicSystemFont(ofSize: 14), textColor: .lightGray)
+    private var releaseDateLabel = UILabel(font: .systemFont(ofSize: 14, weight: .light), textColor: .lightGray)
 
     private var movieItem: Movie?
 
     func setup(with movieItem: Movie) {
         self.movieItem = movieItem
 
-        setMoviePoster()
-        setTitle()
+        movieTitleLabel.text = movieItem.title
+        detailsImageView.image = #imageLiteral(resourceName: "icon_details")
+        overviewTextView.text = movieItem.overview
+        languageLabel.text = movieItem.language
+        releaseDateLabel.text = movieItem.releaseDate
+
+        if let posterPath = movieItem.posterPath {
+            ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath), imageView: movieImageView)
+        }
     }
 
     override init(frame: CGRect) {
@@ -36,45 +43,70 @@ class MovieCollectionViewCell: UICollectionViewCell {
     }
 
     private func configureUI() {
-        backgroundColor = .white
+        backgroundColor = .paleGrey
         movieImageView.layer.cornerRadius = 10
         movieImageView.clipsToBounds = true
+        movieImageView.contentMode = .scaleToFill
 
-        movieTitleLabel.numberOfLines = 0
-        movieTitleLabel.adjustsFontSizeToFitWidth = true
-
-//        overviewTextView.isScrollEnabled = true
-        addSubview(movieImageView)
-        addSubview(movieTitleLabel)
-//        addSubview(overviewTextView)
-//        addSubview(languageLabel)
-//        addSubview(releaseDateLabel)
+        contentView.add(subviews: movieImageView, movieTitleLabel, detailsImageView, overviewTextView, languageLabel, releaseDateLabel)
+        setupConstraints()
     }
 
-    private func setMoviePoster() {
-        if let posterPath = movieItem?.posterPath {
-            ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath), imageView: movieImageView)
-        }
-    }
-
-    private func setTitle() {
-        movieTitleLabel.text = movieItem?.title
+    private func setupConstraints() {
+        setImageConstraints()
+        setTitleLabelConstraints()
+        setDetailsImageViewConstraints()
+        setOverviewLabelConstraints()
+        setLanguageLabelConstraints()
+        setReleaseDateLabelConstraints()
     }
 
     private func setImageConstraints() {
         movieImageView.translatesAutoresizingMaskIntoConstraints = false
-        movieImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        movieImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
-        movieImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        movieImageView.widthAnchor.constraint(equalTo: movieImageView.heightAnchor, multiplier: 16/9).isActive = true
+        movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
+        movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5).isActive = true
+        movieImageView.heightAnchor.constraint(equalToConstant: 188).isActive = true
+        movieImageView.widthAnchor.constraint(equalToConstant: 125).isActive = true
     }
 
     private func setTitleLabelConstraints() {
         movieTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        movieTitleLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        movieTitleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 20).isActive = true
-        movieTitleLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        movieTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+        movieTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        movieTitleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
+        movieTitleLabel.trailingAnchor.constraint(equalTo: detailsImageView.leadingAnchor, constant: -20).isActive = true
+        movieTitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+
+    private func setDetailsImageViewConstraints() {
+        detailsImageView.translatesAutoresizingMaskIntoConstraints = false
+        detailsImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
+        detailsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20).isActive = true
+        detailsImageView.heightAnchor.constraint(equalToConstant: 15).isActive = true
+        detailsImageView.widthAnchor.constraint(equalToConstant: 15).isActive = true
+    }
+
+    private func setOverviewLabelConstraints() {
+        overviewTextView.translatesAutoresizingMaskIntoConstraints = false
+        overviewTextView.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 5).isActive = true
+        overviewTextView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
+        overviewTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        overviewTextView.bottomAnchor.constraint(lessThanOrEqualTo: languageLabel.topAnchor, constant: 15).isActive = true
+    }
+
+    private func setLanguageLabelConstraints() {
+        languageLabel.translatesAutoresizingMaskIntoConstraints = false
+        languageLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
+        languageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
+        languageLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+
+    private func setReleaseDateLabelConstraints() {
+        releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
+        releaseDateLabel.topAnchor.constraint(equalTo: overviewTextView.bottomAnchor, constant: 15).isActive = true
+        releaseDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+        releaseDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10).isActive = true
+        releaseDateLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
     }
 
 }

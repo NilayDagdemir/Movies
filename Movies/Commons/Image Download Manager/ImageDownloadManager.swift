@@ -36,7 +36,7 @@ class ImageDownloadManager: NSObject {
          - completedBlock: A block called when operation has been completed.
          */
         imageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        imageView.sd_setImage(with: url,
+        imageView.sd_setImage(with: url!,
                               placeholderImage: placeHolder,
                               options: options) { (downloadedImage, _, _, _) in
             if downloadedImage != nil {

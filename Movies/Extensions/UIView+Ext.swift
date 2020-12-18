@@ -18,4 +18,8 @@ extension UIView {
         topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
         bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
     }
+
+    func add(subviews: UIView...) {
+        subviews.forEach(addSubview)
+    }
 }

@@ -40,5 +40,5 @@ protocol IBaseInteractorToPresenter: class {
 }
 
 protocol IBaseAdapter: class {
-    func itemCount() -> Int
+    func itemCount(on section: Int) -> Int
 }

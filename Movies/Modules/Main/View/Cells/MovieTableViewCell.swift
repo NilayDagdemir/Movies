@@ -1,5 +1,5 @@
 //
-//  MovieCollectionViewCell.swift
+//  MovieTableViewCell.swift
 //  Movies
 //
 //  Created by Eda Nilay DAĞDEMİR on 15.12.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MovieCollectionViewCell: UICollectionViewCell {
+class MovieTableViewCell: UITableViewCell {
     private var movieImageView = UIImageView(contentMode: .scaleToFill)
     private var movieTitleLabel = UILabel(font: .systemFont(ofSize: 18, weight: .semibold))
     private var detailsImageView = UIImageView(contentMode: .scaleAspectFit)
@@ -17,6 +17,16 @@ class MovieCollectionViewCell: UICollectionViewCell {
     private var releaseDateLabel = UILabel(font: .systemFont(ofSize: 14, weight: .light), textColor: .lightGray)
 
     private var movieItem: Movie?
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        configureUI()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     func setup(with movieItem: Movie) {
         self.movieItem = movieItem
@@ -30,16 +40,6 @@ class MovieCollectionViewCell: UICollectionViewCell {
         if let posterPath = movieItem.posterPath {
             ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath), imageView: movieImageView)
         }
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
-        configureUI()
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
     private func configureUI() {

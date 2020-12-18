@@ -12,9 +12,9 @@ class MainViewController: UIViewController {
 
     // MARK: Properties
     var presenter: IMainPresenter?
-    var adapter: MainCollectionViewAdapter?
+    var adapter: MainTableViewAdapter?
 
-    private var movieListCollectionView: UICollectionView?
+    private var movieListTableView: UITableView?
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -25,32 +25,28 @@ class MainViewController: UIViewController {
 
     private func commonInit() {
         title = "Popular Movies"
-        setupCollectionView()
+        setupTableView()
     }
 
-    private func setupCollectionView() {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: UIScreen.main.bounds.width, height: 188)
-//        layout.scrollDirection = .horizontal
-        layout.scrollDirection = .vertical
-        movieListCollectionView = UICollectionView(frame: view.frame, collectionViewLayout: layout)
-        movieListCollectionView?.backgroundColor = .paleGrey
-        
+    private func setupTableView() {
+        movieListTableView = UITableView(frame: view.frame)
+        movieListTableView?.rowHeight = 188
+        movieListTableView?.backgroundColor = .paleGrey
+        movieListTableView?.separatorStyle = .singleLine
 
-        view.addSubview(movieListCollectionView ?? UICollectionView())
+        view.addSubview(movieListTableView ?? UITableView())
 
-        movieListCollectionView?.delegate = adapter
-        movieListCollectionView?.dataSource = adapter
-        movieListCollectionView?.register(MovieCollectionViewCell.self, forCellWithReuseIdentifier: MovieCollectionViewCell.nameOfClass)
+        movieListTableView?.delegate = adapter
+        movieListTableView?.dataSource = adapter
+        movieListTableView?.register(MovieTableViewCell.self, forCellWithReuseIdentifier: MovieTableViewCell.nameOfClass)
         
-        movieListCollectionView?.pinToEdges(to: view)
+        movieListTableView?.pinToEdges(to: view)
     }
 }
 
 extension MainViewController: IMainView {
-    func reloadCollectionView() {
-        movieListCollectionView?.reloadData()
+    func reloadTableView() {
+        movieListTableView?.reloadData()
     }
 }
-
 

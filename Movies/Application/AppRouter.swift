@@ -15,7 +15,7 @@ open class AppRouter {
     var window: UIWindow?
 
     func start() {
-        let viewController = MainRouter.setupModule()
+        let viewController = TabBarViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
 
         window = UIWindow(frame: UIScreen.main.bounds)

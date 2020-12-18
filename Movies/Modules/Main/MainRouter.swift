@@ -21,7 +21,7 @@ class MainRouter {
         let router = MainRouter()
         let interactor = MainInteractor()
         let networkAPI = APIClient()
-        let adapter = MainCollectionViewAdapter(presenter: presenter)
+        let adapter = MainTableViewAdapter(presenter: presenter)
 
         viewController.presenter =  presenter
         viewController.adapter = adapter

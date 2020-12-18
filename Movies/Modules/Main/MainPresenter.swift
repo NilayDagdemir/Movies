@@ -41,6 +41,6 @@ extension MainPresenter: IMainInteractorToPresenter {
     func movieListRecieved(_ movieList: [Movie]) {
         self.movieList = movieList
         view?.hideProgressHUD()
-        view?.reloadCollectionView()
+        view?.reloadTableView()
     }
 }

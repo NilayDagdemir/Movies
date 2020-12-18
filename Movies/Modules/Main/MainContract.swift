@@ -9,7 +9,7 @@
 import Foundation
 
 protocol IMainView: IBaseView {
-    func reloadCollectionView()
+    func reloadTableView()
 }
 
 protocol IMainPresenter: IBasePresenter {

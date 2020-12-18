@@ -21,9 +21,9 @@ import Foundation
 enum APIRouter: URLRequestConvertible {
 
     case getPopularMovies
+    case searchMovies
     case getMovieDetails
     case getActorDetails
-    case searchMovies
 
     // MARK: - HTTPMethod
     private var method: HTTPMethod {
@@ -40,12 +40,12 @@ enum APIRouter: URLRequestConvertible {
         switch self {
         case .getPopularMovies:
             return "discover/movie"
+        case .searchMovies:
+            return "search/movie"
         case .getMovieDetails:
             return "movie"
         case .getActorDetails:
             return "person"
-        case .searchMovies:
-            return "search/movie"
         }
     }
 

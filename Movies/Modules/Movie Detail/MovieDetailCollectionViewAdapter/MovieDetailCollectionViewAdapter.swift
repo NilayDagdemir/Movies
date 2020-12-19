@@ -37,10 +37,6 @@ extension MovieDetailCollectionViewAdapter: IBaseAdapter {
 extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollectionViewDataSource {
 
     // MARK: - Collection view data source
-//    func numberOfSections(in collectionView: UICollectionView) -> Int {
-//        return 1
-//    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return itemCount()
     }
@@ -62,7 +58,9 @@ extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollecti
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        // TODO: video seçildiyse oynatılacak, cast'ten biri seçildiyse, person detail ekranına yönlendirecek router üzerinden.
+        if let personId = getCast()[indexPath.row].id {
+            presenter.castItemClicked(with: personId)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

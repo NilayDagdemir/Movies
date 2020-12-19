@@ -16,7 +16,7 @@ class MovieDetailViewController: UIViewController {
     var adapter: MovieDetailCollectionViewAdapter?
 
     lazy var movieDetailView: MovieDetailView = {
-        let movieView = MovieDetailView(frame: CGRect(x: 0, y: view.frame.origin.y, width: view.frame.width, height: 500))
+        let movieView = MovieDetailView(frame: CGRect(x: 0, y: view.frame.origin.y + 60, width: view.frame.width, height: 500))
         movieView.backgroundColor = .paleGrey
 
         return movieView

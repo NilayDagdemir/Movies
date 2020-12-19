@@ -50,6 +50,10 @@ extension MovieDetailPresenter: IMovieDetailPresenter {
     func getCast() -> [Cast] {
         return cast ?? []
     }
+
+    func castItemClicked(with personId: Int) {
+        router?.navigateToPersonDetailScreen(of: personId)
+    }
 }
 
 extension MovieDetailPresenter: IMovieDetailInteractorToPresenter {

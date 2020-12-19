@@ -41,5 +41,8 @@ class MovieDetailRouter {
 }
 
 extension MovieDetailRouter: IMovieDetailRouter {
-    // TODO: Implement wireframe methods
+    func navigateToPersonDetailScreen(of personId: Int) {
+        let vc = PersonDetailRouter.setupModule(with: personId)
+        view?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

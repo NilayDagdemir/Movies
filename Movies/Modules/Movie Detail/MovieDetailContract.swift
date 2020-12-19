@@ -10,6 +10,8 @@ import Foundation
 
 protocol IMovieDetailView: IBaseView {
     func reloadCollectionView()
+    func setMovieDetailItem(to item: MovieDetail)
+    func setTitle(to title: String)
 }
 
 protocol IMovieDetailPresenter: IBasePresenter {

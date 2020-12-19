@@ -24,6 +24,10 @@ class SearchViewController: UIViewController {
         commonInit()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+
     private func commonInit() {
         title = "Search Movies"
         setupSearchBar()

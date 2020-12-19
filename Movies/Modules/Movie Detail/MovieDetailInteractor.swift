@@ -31,7 +31,6 @@ extension MovieDetailInteractor: IMovieDetailInteractor {
 
     func retrieveVideos(with movieId: Int) {
         networkAPI?.getVideos(with: movieId, onSuccess: { [weak self] response in
-            print("here video retrieved : \(response)")
             guard let self = self else { return }
             // buradaki 2 results'ı düzelt.
             if let videos = response.results?.results {
@@ -46,7 +45,6 @@ extension MovieDetailInteractor: IMovieDetailInteractor {
 
     func retrieveCast(with movieId: Int) {
         networkAPI?.getCast(with: movieId, onSuccess: { [weak self] response in
-            print("here cast retrieved : \(response)")
             guard let self = self else { return }
             if let cast = response.results?.cast {
                    self.output?.castRecieved(cast)

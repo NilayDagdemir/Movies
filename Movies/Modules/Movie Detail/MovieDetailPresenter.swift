@@ -29,8 +29,6 @@ extension MovieDetailPresenter: IMovieDetailPresenter {
             interactor?.retrieveCast(with: id)
             interactor?.retrieveVideos(with: id)
         }
-        print("here count: \(getCast().count)")
-        print("here count 2: \(getVideos().count)")
     }
 
     func setSelectedMovieId(with movieId: Int) {
@@ -62,11 +60,14 @@ extension MovieDetailPresenter: IMovieDetailInteractorToPresenter {
 
     func movieDetailsRecieved(_ movieDetailItem: MovieDetail) {
         self.movieDetailItem = movieDetailItem
+        view?.setMovieDetailItem(to: movieDetailItem)
+        view?.setTitle(to: movieDetailItem.title ?? "")
     }
 
     func videosRecieved(_ videos: [Video]) {
         self.videos = videos
         view?.hideProgressHUD()
+        view?.reloadCollectionView()
     }
 
     func castRecieved(_ cast: [Cast]) {

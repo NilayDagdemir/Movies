@@ -51,7 +51,7 @@ extension MainTableViewAdapter: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        presenter.movieItemClicked(with: getMovieList()[indexPath.row])
+        presenter.movieCardClicked(with: getMovieList()[indexPath.row])
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

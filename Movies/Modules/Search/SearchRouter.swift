@@ -42,5 +42,12 @@ class SearchRouter {
 }
 
 extension SearchRouter: ISearchRouter {
-    // TODO: Implement wireframe methods
+    func navigateToMovieDetailScreen(of movieItem: Movie) {
+        if let id = movieItem.id {
+            let vc = MovieDetailRouter.setupModule(with: id)
+            view?.navigationController?.pushViewController(vc, animated: true)
+        } else {
+            view?.showErrorDialog(with: Constants.Error.defaultErrorMessage)
+        }
+    }
 }

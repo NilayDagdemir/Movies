@@ -29,6 +29,10 @@ class MainViewController: UIViewController {
         commonInit()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
+    }
+
     private func commonInit() {
         title = "Popular Movies"
         setupTableView()

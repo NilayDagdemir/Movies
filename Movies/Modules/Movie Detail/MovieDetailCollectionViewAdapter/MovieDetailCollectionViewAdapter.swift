@@ -26,7 +26,6 @@ extension MovieDetailCollectionViewAdapter: IBaseAdapter {
     }
 
     func getVideos() -> [Video] {
-        print("here video count: \(presenter.getVideos().count)")
         return presenter.getVideos()
     }
 
@@ -35,53 +34,50 @@ extension MovieDetailCollectionViewAdapter: IBaseAdapter {
     }
 }
 
-//extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollectionViewDataSource {
 
     // MARK: - Collection view data source
 //    func numberOfSections(in collectionView: UICollectionView) -> Int {
 //        return 1
 //    }
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        return setupMovieDetailCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
-//    }
-//
-//    private func setupMovieDetailCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
-//        let identifier = CastCollectionViewCell.nameOfClass
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
-//        if let cell = cell as? CastCollectionViewCell {
-//            cell.setup(with: getCast()[indexPath.row])
-//
-//            return cell
-//        }
-//        return UICollectionViewCell()
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        collectionView.deselectItem(at: indexPath, animated: true)
-//        // TODO: video seçildiyse oynatılacak, cast'ten biri seçildiyse, person detail ekranına yönlendirecek router üzerinden.
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        switch kind {
-//        case UICollectionView.elementKindSectionHeader:
-//            guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-//                                                                                   withReuseIdentifier: MovieDetailCollectionViewHeader.nameOfClass,
-//                                                                                   for: indexPath) as? MovieDetailCollectionViewHeader else {
-//            fatalError("Invalid view type")
-//        }
-//        print("here movie detail: \(getMovieDetails())")
-//        if let movieDetailItem = getMovieDetails() {
-//            headerView.setup(with: movieDetailItem)
-//        }
-//
-//        return headerView
-//        default:
-//            assert(false, "Invalid element type")
-//        }
-//    }
-//}
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return itemCount()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return setupMovieDetailCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
+    }
+
+    private func setupMovieDetailCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let identifier = CastCollectionViewCell.nameOfClass
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+        if let cell = cell as? CastCollectionViewCell {
+            cell.setup(with: getCast()[indexPath.row])
+
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        // TODO: video seçildiyse oynatılacak, cast'ten biri seçildiyse, person detail ekranına yönlendirecek router üzerinden.
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let identifier = CastSectionHeader.nameOfClass
+            let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: identifier, for: indexPath) as! CastSectionHeader
+            sectionHeader.titleLabel.text = "Cast:"
+
+             return sectionHeader
+        } else {
+             return UICollectionReusableView()
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: 20)
+    }
+}

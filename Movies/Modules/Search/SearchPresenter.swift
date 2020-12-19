@@ -33,6 +33,10 @@ extension SearchPresenter: ISearchPresenter {
     func getFilteredMovies() -> [Movie] {
         return filteredMovies
     }
+
+    func movieCardClicked(with movieItem: Movie) {
+        router?.navigateToMovieDetailScreen(of: movieItem)
+    }
 }
 
 extension SearchPresenter: ISearchInteractorToPresenter {

@@ -48,6 +48,12 @@ extension SearchTableViewAdapter: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell()
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        presenter.movieCardClicked(with: getFilteredMovies()[indexPath.row])
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

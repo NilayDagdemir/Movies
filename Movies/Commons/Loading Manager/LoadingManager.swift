@@ -20,7 +20,7 @@ class LoadingManager: NSObject {
 
     func setupLoadingIndicator() {
         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        indicator.style = UIActivityIndicatorView.Style.gray
+        indicator.style = UIActivityIndicatorView.Style.whiteLarge
         if let topMostViewController = UIApplication.shared.keyWindow?.rootViewController {
             indicator.center = topMostViewController.view.center
             topMostViewController.view.addSubview(indicator)

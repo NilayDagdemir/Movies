@@ -16,6 +16,7 @@ protocol ISearchView: IBaseView {
 protocol ISearchPresenter: IBasePresenter {
     func filterItems(with searchText: String)
     func getFilteredMovies() -> [Movie]
+    func movieCardClicked(with item: Movie)
 }
 
 protocol ISearchInteractor: class {
@@ -27,5 +28,5 @@ protocol ISearchInteractorToPresenter: IBaseInteractorToPresenter {
 }
 
 protocol ISearchRouter: class {
-    // TODO: Declare wireframe methods
+    func navigateToMovieDetailScreen(of movieItem: Movie)
 }

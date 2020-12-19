@@ -38,7 +38,7 @@ class Constants {
         static let movieNotFoundPopupMessage: String = "Movie not found."
 
         // MARK: Main Table View
-        static let mainTableViewRowHeight: CGFloat = 220
+        static let movieTableViewRowHeight: CGFloat = 220
     }
 
     // MARK: Main

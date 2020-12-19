@@ -55,7 +55,7 @@ class CastCollectionViewCell: UICollectionViewCell {
 
     private func setImageConstraints() {
         castImageView.translatesAutoresizingMaskIntoConstraints = false
-        castImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        castImageView.topAnchor.constraint(equalTo: topAnchor, constant: -10).isActive = true
         castImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         castImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
         castImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true

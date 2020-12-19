@@ -25,7 +25,6 @@ class MovieDetailViewController: UIViewController {
     lazy var movieDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 40, height: 70)
-        layout.headerReferenceSize = CGSize(width: 0, height: 30)
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .paleGrey
 
@@ -51,11 +50,14 @@ class MovieDetailViewController: UIViewController {
     private func setupCollectionView() {
         movieDetailCollectionView.delegate = adapter
         movieDetailCollectionView.dataSource = adapter
-        movieDetailCollectionView.register(CastSectionHeader.self,
-                                           forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                           withReuseIdentifier: CastSectionHeader.nameOfClass)
+        movieDetailCollectionView.register(SectionHeaderCell.self,
+                                           forCellWithReuseIdentifier: SectionHeaderCell.nameOfClass)
         movieDetailCollectionView.register(CastCollectionViewCell.self,
                                            forCellWithReuseIdentifier: CastCollectionViewCell.nameOfClass)
+//        movieDetailCollectionView.register(VideoSectionHeaderCell.self,
+//                                           withReuseIdentifier: VideoSectionHeaderCollectionViewCell.nameOfClass)
+        movieDetailCollectionView.register(VideoCollectionViewCell.self,
+                                           forCellWithReuseIdentifier: VideoCollectionViewCell.nameOfClass)
     }
 
     private func setupConstraints() {

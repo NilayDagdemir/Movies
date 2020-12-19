@@ -45,4 +45,9 @@ extension MovieDetailRouter: IMovieDetailRouter {
         let vc = PersonDetailRouter.setupModule(with: personId)
         view?.navigationController?.pushViewController(vc, animated: true)
     }
+
+    func navigateToURL(link: String) {
+        print("here link is: \(link)")
+        UIApplication.shared.openUrl(link)
+    }
 }

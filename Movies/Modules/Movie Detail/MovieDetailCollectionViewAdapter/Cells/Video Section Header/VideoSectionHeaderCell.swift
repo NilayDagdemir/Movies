@@ -1,5 +1,5 @@
 //
-//  CastSectionHeader.swift
+//  VideoSectionHeaderCell.swift
 //  Movies
 //
 //  Created by Eda Nilay DAĞDEMİR on 19.12.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CastSectionHeader: UICollectionReusableView {
+class VideoSectionHeaderCell: UICollectionReusableView {
      var titleLabel: UILabel = {
          let label = UnderlinedLabel(font: .systemFont(ofSize: 18), textColor: .darkGray)
 
@@ -31,7 +31,6 @@ class CastSectionHeader: UICollectionReusableView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 0).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
     }
 }

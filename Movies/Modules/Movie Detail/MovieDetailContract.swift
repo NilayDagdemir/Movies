@@ -15,10 +15,10 @@ protocol IMovieDetailView: IBaseView {
 }
 
 protocol IMovieDetailPresenter: IBasePresenter {
+    func videoItemClicked(with urlLink: String)
     func castItemClicked(with personId: Int)
     func setSelectedMovieId(with movieId: Int)
     func getMovieId() -> Int?
-    func getMovieDetailItem() -> MovieDetail?
     func getVideos() -> [Video]
     func getCast() -> [Cast]
 }
@@ -37,4 +37,5 @@ protocol IMovieDetailInteractorToPresenter: IBaseInteractorToPresenter {
 
 protocol IMovieDetailRouter: class {
     func navigateToPersonDetailScreen(of personId: Int)
+    func navigateToURL(link: String)
 }

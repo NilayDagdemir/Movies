@@ -51,6 +51,10 @@ extension MovieDetailPresenter: IMovieDetailPresenter {
         return cast ?? []
     }
 
+    func videoItemClicked(with urlLink: String) {
+        router?.navigateToURL(link: urlLink)
+    }
+
     func castItemClicked(with personId: Int) {
         router?.navigateToPersonDetailScreen(of: personId)
     }

@@ -41,11 +41,11 @@ extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollecti
         case 0:
             return 1
         case 1:
-            return getVideos().count
+            return getCast().count
         case 2:
             return 1
         case 3:
-            return getCast().count
+            return getVideos().count
         default:
             return 0
         }
@@ -56,13 +56,13 @@ extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollecti
         let section = indexPath.section
         switch section {
         case 0:
-            return setupSectionHeaderCell(collectionView: collectionView, indexPath: indexPath, with: Constants.MovieDetailSectionHeaderCells.video.title)
-        case 1:
-            return setupVideoCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
-        case 2:
             return setupSectionHeaderCell(collectionView: collectionView, indexPath: indexPath, with: Constants.MovieDetailSectionHeaderCells.cast.title)
-        case 3:
+        case 1:
             return setupCastCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
+        case 2:
+            return setupSectionHeaderCell(collectionView: collectionView, indexPath: indexPath, with: Constants.MovieDetailSectionHeaderCells.video.title)
+        case 3:
+            return setupVideoCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
         default:
             return UICollectionViewCell()
         }
@@ -94,7 +94,7 @@ extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollecti
         let identifier = VideoCollectionViewCell.nameOfClass
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
         if let cell = cell as? VideoCollectionViewCell {
-            cell.setup(with: getVideos()[indexPath.row])
+            cell.setup(delegate: self, with: getVideos()[indexPath.row])
 
             return cell
         }
@@ -104,14 +104,15 @@ extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollecti
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        if (collectionView.cellForItem(at: indexPath) as? VideoCollectionViewCell) != nil {
-            if let videoURL = getVideos()[indexPath.row].site {
-                presenter.videoItemClicked(with: videoURL)
-            }
-        } else if (collectionView.cellForItem(at: indexPath) as? CastCollectionViewCell) != nil {
-            if let personId = getCast()[indexPath.row].id {
+        if (collectionView.cellForItem(at: indexPath) as? CastCollectionViewCell) != nil,
+            let personId = getCast()[indexPath.row].id {
                 presenter.castItemClicked(with: personId)
-            }
         }
+    }
+}
+
+extension MovieDetailCollectionViewAdapter: VideoCollectionViewCellDelegate {
+    func videoURLClicked(with url: String?) {
+        presenter.videoItemClicked(with: url ?? "")
     }
 }

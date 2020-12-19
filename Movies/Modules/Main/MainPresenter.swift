@@ -42,5 +42,8 @@ extension MainPresenter: IMainInteractorToPresenter {
         self.movieList = movieList
         view?.hideProgressHUD()
         view?.reloadTableView()
+        if movieList.isEmpty {
+            view?.showErrorDialog(with: Constants.Error.noMovieFound)
+        }
     }
 }

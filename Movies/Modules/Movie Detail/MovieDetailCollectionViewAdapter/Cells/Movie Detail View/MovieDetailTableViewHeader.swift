@@ -26,6 +26,18 @@ class MovieDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    private func configureUI() {
+        backgroundColor = .paleGrey
+        preservesSuperviewLayoutMargins = false
+        movieCoverPhoto.clipsToBounds = true
+        movieCoverPhoto.contentMode = .scaleToFill
+        movieSummaryTextView.isEditable = false
+        movieSummaryTextView.adjustsFontForContentSizeCategory = true
+
+        add(subviews: movieCoverPhoto, movieSummaryTextView, ratingLabel)
+        setupConstraints()
+    }
+
     func setup(with movieDetailItem: MovieDetail) {
         self.movieDetailItem = movieDetailItem
 
@@ -42,18 +54,6 @@ class MovieDetailView: UIView {
         }
     }
 
-    private func configureUI() {
-        backgroundColor = .paleGrey
-        preservesSuperviewLayoutMargins = false
-        movieCoverPhoto.clipsToBounds = true
-        movieCoverPhoto.contentMode = .scaleToFill
-        movieSummaryTextView.isEditable = false
-        movieSummaryTextView.adjustsFontForContentSizeCategory = true
-
-        add(subviews: movieCoverPhoto, movieSummaryTextView, ratingLabel)
-        setupConstraints()
-    }
-
     private func setupConstraints() {
         setImageConstraints()
         setSummaryConstraints()
@@ -65,7 +65,7 @@ class MovieDetailView: UIView {
         movieCoverPhoto.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         movieCoverPhoto.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         movieCoverPhoto.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        movieCoverPhoto.heightAnchor.constraint(equalToConstant: 432).isActive = true
+        movieCoverPhoto.heightAnchor.constraint(equalToConstant: 422).isActive = true
     }
 
     private func setSummaryConstraints() {

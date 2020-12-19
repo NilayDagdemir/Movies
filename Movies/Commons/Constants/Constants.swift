@@ -13,6 +13,8 @@ class Constants {
         static let defaultErrorMessage: String = "An error occured. Please try again later."
         static let noOverviewTextExists: String = "**No overview exists for this one**"
         static let noSearchTextEntered: String = "Please enter a movie, genre, or person name."
+        static let noMovieFound: String = "No movie found."
+        static let invalidURL: String = "Invalid URL."
     }
 
     // MARK: Common
@@ -57,6 +59,14 @@ class Constants {
             case .video: return "Videos:"
             case .cast: return "Cast:"
             }
+        }
+    }
+
+    static func getVideoURL(from base: String, _ key: String) -> String {
+        switch base {
+        case "YouTube": return "https://www.youtube.com/watch?v=\(key)"
+        case "Vimeo": return "https://vimeo.com/\(key)"
+        default: return ""
         }
     }
 }

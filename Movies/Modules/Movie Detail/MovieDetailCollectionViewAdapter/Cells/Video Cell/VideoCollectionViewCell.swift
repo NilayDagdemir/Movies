@@ -8,10 +8,14 @@
 
 import UIKit
 
-class VideoCollectionViewCell: UICollectionViewCell {
-    private var videoLabel = UnderlinedLabel(font: .systemFont(ofSize: 14), textColor: .systemBlue)
-    private var videoIconImageView = UIImageView(contentMode: .scaleAspectFit)
+protocol VideoCollectionViewCellDelegate: AnyObject {
+    func videoURLClicked(with url: String?)
+}
 
+class VideoCollectionViewCell: UICollectionViewCell {
+    private weak var delegate: VideoCollectionViewCellDelegate?
+    private var videoLabel = UnderlinedLabel(font: .systemFont(ofSize: 14), textColor: .systemBlue)
+    private var videoURL: String?
     private var videoItem: Video?
 
     override init(frame: CGRect) {
@@ -24,39 +28,53 @@ class VideoCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setup(with videoItem: Video) {
-        self.videoItem = videoItem
-
-        if let videoName = videoItem.name, let videoURL = videoItem.site {
-            let attributedString = NSMutableAttributedString(string: videoName)
-            attributedString.setAsLink(textToFind: videoName, linkURL: videoURL)
-            videoLabel.attributedText = attributedString
+    var isHeightCalculated: Bool = false
+    // swiftlint:disable:next line_length
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        if !isHeightCalculated {
+            setNeedsLayout()
+            layoutIfNeeded()
+            layoutAttributes.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 15)
+            isHeightCalculated = true
         }
-        videoIconImageView.image = #imageLiteral(resourceName: "icon_play")
+        return layoutAttributes
     }
 
     private func configureUI() {
         backgroundColor = .paleGrey
-        contentView.add(subviews: videoLabel, videoIconImageView)
-        setupConstraints()
+        videoLabel.lineBreakMode = .byTruncatingTail
+        videoLabel.isUserInteractionEnabled = true
+        contentView.add(subviews: videoLabel)
+        addTapGestureRecognizer()
+        setVideoLabelConstraints()
     }
 
-    private func setupConstraints() {
-        setVideoLabelConstraints()
-        setVideoIconImageViewConstraints()
+    func setup(delegate: VideoCollectionViewCellDelegate, with videoItem: Video) {
+        self.delegate = delegate
+        self.videoItem = videoItem
+
+        if let videoName = videoItem.name, let videoURLBase = videoItem.site, let videoKey = videoItem.key {
+            videoURL = Constants.getVideoURL(from: videoURLBase, videoKey)
+            let attributedString = NSMutableAttributedString(string: videoName)
+            attributedString.setAsLink(textToFind: videoName, linkURL: videoURL ?? "")
+            videoLabel.attributedText = attributedString
+        }
+    }
+
+    private func addTapGestureRecognizer() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(labelTapped))
+        videoLabel.addGestureRecognizer(tapRecognizer)
+    }
+
+    @objc private func labelTapped() {
+        delegate?.videoURLClicked(with: videoURL)
     }
 
     private func setVideoLabelConstraints() {
         videoLabel.translatesAutoresizingMaskIntoConstraints = false
-        videoLabel.topAnchor.constraint(equalTo: topAnchor, constant: -10).isActive = true
+        videoLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
         videoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-    }
-
-    private func setVideoIconImageViewConstraints() {
-        videoIconImageView.translatesAutoresizingMaskIntoConstraints = false
-        videoIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: -15).isActive = true
-        videoIconImageView.leadingAnchor.constraint(equalTo: videoLabel.trailingAnchor, constant: 10).isActive = true
-        videoIconImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        videoIconImageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+        videoLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        videoLabel.heightAnchor.constraint(equalToConstant: 15).isActive = true
     }
 }

@@ -11,7 +11,9 @@ import UIKit
 extension UIApplication {
     func openUrl(_ urlLink: String) {
         if let url = URL(string: urlLink), UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            open(url, options: [:], completionHandler: nil)
+        } else {
+            keyWindow?.rootViewController?.showErrorDialog(with: Constants.Error.invalidURL)
         }
     }
 }

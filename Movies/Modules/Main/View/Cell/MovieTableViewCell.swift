@@ -73,7 +73,6 @@ class MovieTableViewCell: UITableViewCell {
         movieImageView.translatesAutoresizingMaskIntoConstraints = false
         movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         movieImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
-        movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10).isActive = true
         movieImageView.heightAnchor.constraint(equalToConstant: 188).isActive = true
         movieImageView.widthAnchor.constraint(equalToConstant: 125).isActive = true
     }

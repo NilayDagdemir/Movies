@@ -48,5 +48,8 @@ extension SearchPresenter: ISearchInteractorToPresenter {
         self.filteredMovies = filteredList
         view?.hideProgressHUD()
         view?.reloadTableView()
+        if filteredMovies.isEmpty {
+            view?.showErrorDialog(with: Constants.Error.noMovieFound)
+        }
     }
 }

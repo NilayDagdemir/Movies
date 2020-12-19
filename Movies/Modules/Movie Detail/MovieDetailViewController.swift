@@ -25,7 +25,7 @@ class MovieDetailViewController: UIViewController {
 
     lazy var movieDetailCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 40, height: 70)
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .paleGrey
 
@@ -66,7 +66,7 @@ class MovieDetailViewController: UIViewController {
         movieDetailView.topAnchor.constraint(equalTo: view.topAnchor, constant: navBarHeight).isActive = true
         movieDetailView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         movieDetailView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        movieDetailView.heightAnchor.constraint(equalToConstant: 510).isActive = true
+        movieDetailView.heightAnchor.constraint(equalToConstant: 500).isActive = true
 
         movieDetailCollectionView.translatesAutoresizingMaskIntoConstraints = false
         // swiftlint:disable:next line_length

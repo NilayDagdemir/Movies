@@ -29,9 +29,8 @@ class VideoCollectionViewCell: UICollectionViewCell {
 
         if let videoName = videoItem.name, let videoURL = videoItem.site {
             let attributedString = NSMutableAttributedString(string: videoName)
-            attributedString.SetAsLink(textToFind: videoName, linkURL: videoURL)
+            attributedString.setAsLink(textToFind: videoName, linkURL: videoURL)
             videoLabel.attributedText = attributedString
-//            videoLabel.sizeToFit()
         }
         videoIconImageView.image = #imageLiteral(resourceName: "icon_play")
     }
@@ -51,16 +50,12 @@ class VideoCollectionViewCell: UICollectionViewCell {
         videoLabel.translatesAutoresizingMaskIntoConstraints = false
         videoLabel.topAnchor.constraint(equalTo: topAnchor, constant: -10).isActive = true
         videoLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-//        videoLabel.trailingAnchor.constraint(equalTo: videoIconImageView.leadingAnchor, constant: -10).isActive = true
-//        videoLabel.widthAnchor.constraint(equalTo: widthAnchor, constant: -24).isActive = true
     }
 
     private func setVideoIconImageViewConstraints() {
         videoIconImageView.translatesAutoresizingMaskIntoConstraints = false
         videoIconImageView.topAnchor.constraint(equalTo: topAnchor, constant: -15).isActive = true
         videoIconImageView.leadingAnchor.constraint(equalTo: videoLabel.trailingAnchor, constant: 10).isActive = true
-//        videoIconImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0).isActive = true
-//        videoIconImageView.trailingAnchor.constraint(equalTo: videoLabel.trailingAnchor, constant: -5).isActive = true
         videoIconImageView.heightAnchor.constraint(equalToConstant: 24).isActive = true
         videoIconImageView.widthAnchor.constraint(equalToConstant: 24).isActive = true
     }

@@ -11,7 +11,7 @@ import SDWebImage
 
 class ImageDownloadManager: NSObject {
     static let shared = ImageDownloadManager()
-    
+
     private override init() { }
 
     func downloadImageForImageView(url: String?, imageView: UIImageView) {

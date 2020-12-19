@@ -29,14 +29,16 @@ class MovieDetailView: UIView {
     func setup(with movieDetailItem: MovieDetail) {
         self.movieDetailItem = movieDetailItem
 
-        movieSummaryTextView.text = movieDetailItem.overview == "" ? "**No overview exists for this one**" : movieDetailItem.overview
+        movieSummaryTextView.text = movieDetailItem.overview == "" ? Constants.Error.noOverviewTextExists
+                                                                     : movieDetailItem.overview
         if let rating = movieDetailItem.voteAverage {
             ratingLabel.text = "Rating: \(rating)"
         }
         if let posterPath = movieDetailItem.posterPath {
-            ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath,
-                                                                                           resolution: Constants.PosterProperties.high.resolution),
-                                                                                           imageView: movieCoverPhoto)
+            let posterURL = Config.getPosterURL(with: posterPath,
+                                                resolution: Constants.PosterProperties.high.resolution)
+            ImageDownloadManager.shared.downloadImageForImageView(url: posterURL,
+                                                                  imageView: movieCoverPhoto)
         }
     }
 
@@ -47,7 +49,7 @@ class MovieDetailView: UIView {
         movieCoverPhoto.contentMode = .scaleToFill
         movieSummaryTextView.isEditable = false
         movieSummaryTextView.adjustsFontForContentSizeCategory = true
-        
+
         add(subviews: movieCoverPhoto, movieSummaryTextView, ratingLabel)
         setupConstraints()
     }
@@ -67,10 +69,12 @@ class MovieDetailView: UIView {
     }
 
     private func setSummaryConstraints() {
+        // swiftlint:disable line_length
         movieSummaryTextView.translatesAutoresizingMaskIntoConstraints = false
         movieSummaryTextView.topAnchor.constraint(equalTo: movieCoverPhoto.bottomAnchor, constant: 10).isActive = true
         movieSummaryTextView.leadingAnchor.constraint(equalTo: movieCoverPhoto.leadingAnchor, constant: 10).isActive = true
         movieSummaryTextView.trailingAnchor.constraint(equalTo: movieCoverPhoto.trailingAnchor, constant: -10).isActive = true
+        // swiftlint:enable line_length
         movieSummaryTextView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
 

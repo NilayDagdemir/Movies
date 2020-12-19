@@ -29,7 +29,7 @@ class APIProvider: NSObject {
                                       onError: OnError? = nil) -> DataRequest {
         return getRequest(route, decoder, onSuccess, onError)
     }
-    
+
     func getRequest<T: Decodable>(_ route: URLRequestConvertible,
                                   _ decoder: DataDecoder = JSONDecoder(),
                                   _ onSuccess: OnSuccess<T>,

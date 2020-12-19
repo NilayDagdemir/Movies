@@ -55,6 +55,6 @@ extension MainTableViewAdapter: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return Constants.Main.mainTableViewRowHeight
     }
 }

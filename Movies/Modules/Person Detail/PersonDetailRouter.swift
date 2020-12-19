@@ -11,11 +11,9 @@ import UIKit
 class PersonDetailRouter {
 
     // MARK: Properties
-
     weak var view: UIViewController?
 
     // MARK: Static methods
-
     static func setupModule(with personId: Int) -> PersonDetailViewController {
         let viewController = PersonDetailViewController()
         let presenter = PersonDetailPresenter()
@@ -27,7 +25,6 @@ class PersonDetailRouter {
         viewController.modalPresentationStyle = .fullScreen
 
         presenter.view = viewController
-        presenter.router = router
         presenter.interactor = interactor
         presenter.setSelectedPersonId(with: personId)
 
@@ -38,8 +35,4 @@ class PersonDetailRouter {
 
         return viewController
     }
-}
-
-extension PersonDetailRouter: IPersonDetailRouter {
-    // TODO: Implement wireframe methods
 }

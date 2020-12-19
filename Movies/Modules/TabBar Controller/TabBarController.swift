@@ -34,9 +34,9 @@ enum TabBarItem: Int {
 }
 
 class TabBarViewController: UITabBarController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
         configureTabBar()
     }
 

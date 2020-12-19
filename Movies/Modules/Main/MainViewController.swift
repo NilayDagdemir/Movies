@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
     }
 
     private func commonInit() {
-        title = "Popular Movies"
+        title = Constants.Main.navBarTitle
         setupTableView()
     }
 
@@ -54,4 +54,3 @@ extension MainViewController: IMainView {
         movieListTableView.reloadData()
     }
 }
-

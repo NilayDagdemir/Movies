@@ -12,7 +12,6 @@ class PersonDetailPresenter {
 
     // MARK: Properties
     weak var view: IPersonDetailView?
-    var router: IPersonDetailRouter?
     var interactor: IPersonDetailInteractor?
 
     private var personId: Int?

@@ -19,7 +19,6 @@ extension SearchInteractor: ISearchInteractor {
     func searchMovies(with searchText: String) {
         networkAPI?.searchMovies(with: searchText, onSuccess: { [weak self] response in
             guard let self = self else { return }
-            // buradaki 2 results'ı düzelt.
             if let filteredList = response.results?.results {
                 self.output?.movieListFiltered(filteredList)
             } else {

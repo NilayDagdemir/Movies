@@ -51,15 +51,16 @@ extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollecti
         }
     }
 
+    // swiftlint:disable line_length
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let section = indexPath.section
         switch section {
         case 0:
-            return setupSectionHeaderCell(collectionView: collectionView, indexPath: indexPath, with: "Videos:")
+            return setupSectionHeaderCell(collectionView: collectionView, indexPath: indexPath, with: Constants.MovieDetailSectionHeaderCells.video.title)
         case 1:
             return setupVideoCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
         case 2:
-            return setupSectionHeaderCell(collectionView: collectionView, indexPath: indexPath, with: "Cast:")
+            return setupSectionHeaderCell(collectionView: collectionView, indexPath: indexPath, with: Constants.MovieDetailSectionHeaderCells.cast.title)
         case 3:
             return setupCastCollectionViewCell(collectionView: collectionView, indexPath: indexPath)
         default:
@@ -99,6 +100,7 @@ extension MovieDetailCollectionViewAdapter: UICollectionViewDelegate, UICollecti
         }
         return UICollectionViewCell()
     }
+    // swiftlint:enable line_length
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)

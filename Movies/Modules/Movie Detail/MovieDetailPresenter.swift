@@ -23,11 +23,11 @@ class MovieDetailPresenter {
 
 extension MovieDetailPresenter: IMovieDetailPresenter {
     func viewDidLoad() {
-        if let id = movieId {
+        if let movieId = movieId {
             view?.showProgressHUD()
-            interactor?.retrieveMovieDetails(with: id)
-            interactor?.retrieveCast(with: id)
-            interactor?.retrieveVideos(with: id)
+            interactor?.retrieveMovieDetails(with: movieId)
+            interactor?.retrieveCast(with: movieId)
+            interactor?.retrieveVideos(with: movieId)
         }
     }
 

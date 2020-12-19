@@ -12,11 +12,9 @@ import UIKit
 class SearchRouter {
 
     // MARK: Properties
-
     weak var view: UIViewController?
 
     // MARK: Static methods
-
     static func setupModule() -> SearchViewController {
         let viewController = SearchViewController()
         let presenter = SearchPresenter()
@@ -43,9 +41,9 @@ class SearchRouter {
 
 extension SearchRouter: ISearchRouter {
     func navigateToMovieDetailScreen(of movieItem: Movie) {
-        if let id = movieItem.id {
-            let vc = MovieDetailRouter.setupModule(with: id)
-            view?.navigationController?.pushViewController(vc, animated: true)
+        if let movieId = movieItem.id {
+            let movieDetailVC = MovieDetailRouter.setupModule(with: movieId)
+            view?.navigationController?.pushViewController(movieDetailVC, animated: true)
         } else {
             view?.showErrorDialog(with: Constants.Error.defaultErrorMessage)
         }

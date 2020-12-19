@@ -24,5 +24,3 @@ protocol IPersonDetailInteractor: class {
 protocol IPersonDetailInteractorToPresenter: IBaseInteractorToPresenter {
     func personDetailsRetrieved(_ personDetail: PersonDetail)
 }
-
-protocol IPersonDetailRouter: class {}

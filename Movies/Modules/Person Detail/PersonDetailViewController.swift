@@ -19,7 +19,8 @@ class PersonDetailViewController: UIViewController {
     var presenter: IPersonDetailPresenter?
 
     lazy var personDetailView: PersonDetailView = {
-        let movieView = PersonDetailView(frame: CGRect(x: 0, y: view.frame.origin.y + 60, width: view.frame.width, height: 500))
+        let movieView = PersonDetailView(frame: CGRect(x: 0, y: view.frame.origin.y + 60,
+                                                       width: view.frame.width, height: 500))
         movieView.backgroundColor = .paleGrey
 
         return movieView

@@ -14,6 +14,7 @@ struct MovieList: Codable {
 }
 
 // MARK: - Movie
+// swiftlint:disable identifier_name
 struct Movie: Codable {
     let id: Int?
     let title: String?

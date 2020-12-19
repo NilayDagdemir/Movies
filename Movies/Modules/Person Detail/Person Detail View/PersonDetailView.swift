@@ -34,13 +34,14 @@ class PersonDetailView: UIView {
 
         nameLabel.text = "Name: \(personDetailItem.name)"
         knownForDepartmentLabel.text = "\(personDetailItem.knownForDepartment)"
-        biographyTextView.text = personDetailItem.biography == "" ? "**No biography exists for this one**" : "\(personDetailItem.biography)"
+        biographyTextView.text = personDetailItem.biography == "" ? Constants.Error.noOverviewTextExists :
+                                                                    "\(personDetailItem.biography)"
         birthdayLabel.text = "Birthday: \(personDetailItem.birthday)"
         placeOfBirthLabel.text = "Place of birth: \(personDetailItem.placeOfBirth)"
 
-        ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: personDetailItem.profilePath,
-                                                                                           resolution: Constants.PosterProperties.high.resolution),
-                                                                                           imageView: profilePhoto)
+        let posterURL = Config.getPosterURL(with: personDetailItem.profilePath,
+                                            resolution: Constants.PosterProperties.high.resolution)
+        ImageDownloadManager.shared.downloadImageForImageView(url: posterURL, imageView: profilePhoto)
     }
 
     private func configureUI() {
@@ -51,7 +52,9 @@ class PersonDetailView: UIView {
         biographyTextView.isEditable = false
         biographyTextView.adjustsFontForContentSizeCategory = true
 
-        add(subviews: profilePhoto, nameLabel, knownForDepartmentLabel, biographyTextView, birthdayLabel, placeOfBirthLabel)
+        add(subviews: profilePhoto, nameLabel,
+                      knownForDepartmentLabel, biographyTextView,
+                      birthdayLabel, placeOfBirthLabel)
         setupConstraints()
     }
 
@@ -84,23 +87,28 @@ class PersonDetailView: UIView {
         knownForDepartmentLabel.translatesAutoresizingMaskIntoConstraints = false
         knownForDepartmentLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
         knownForDepartmentLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor, constant: 0).isActive = true
+        // swiftlint:disable:next line_length
         knownForDepartmentLabel.trailingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: -10).isActive = true
         knownForDepartmentLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
 
     private func setBiographyTextViewConstraints() {
         biographyTextView.translatesAutoresizingMaskIntoConstraints = false
+        // swiftlint:disable line_length
         biographyTextView.topAnchor.constraint(equalTo: knownForDepartmentLabel.bottomAnchor, constant: 10).isActive = true
         biographyTextView.leadingAnchor.constraint(equalTo: knownForDepartmentLabel.leadingAnchor, constant: -7).isActive = true
         biographyTextView.trailingAnchor.constraint(equalTo: knownForDepartmentLabel.trailingAnchor, constant: -10).isActive = true
+        // swiftlint:enable line_length
         biographyTextView.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
 
     private func setBirthdayLabelConstraints() {
         birthdayLabel.translatesAutoresizingMaskIntoConstraints = false
         birthdayLabel.topAnchor.constraint(equalTo: biographyTextView.bottomAnchor, constant: 10).isActive = true
+        // swiftlint:disable line_length
         birthdayLabel.leadingAnchor.constraint(equalTo: knownForDepartmentLabel.leadingAnchor, constant: 0).isActive = true
         birthdayLabel.trailingAnchor.constraint(equalTo: knownForDepartmentLabel.trailingAnchor, constant: -10).isActive = true
+        // swiftlint:enable line_length
         birthdayLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
 
@@ -108,6 +116,7 @@ class PersonDetailView: UIView {
         placeOfBirthLabel.translatesAutoresizingMaskIntoConstraints = false
         placeOfBirthLabel.topAnchor.constraint(equalTo: birthdayLabel.bottomAnchor, constant: 10).isActive = true
         placeOfBirthLabel.leadingAnchor.constraint(equalTo: birthdayLabel.leadingAnchor, constant: 0).isActive = true
+        // swiftlint:disable:next line_length
         placeOfBirthLabel.trailingAnchor.constraint(equalTo: birthdayLabel.trailingAnchor, constant: -10).isActive = true
         placeOfBirthLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }

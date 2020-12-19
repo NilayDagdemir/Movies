@@ -14,6 +14,7 @@ struct CastDetail: Codable {
 }
 
 // MARK: - Cast
+// swiftlint:disable identifier_name
 struct Cast: Codable {
     let id: Int?
     let gender: Int?

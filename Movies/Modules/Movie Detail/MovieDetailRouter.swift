@@ -42,12 +42,11 @@ class MovieDetailRouter {
 
 extension MovieDetailRouter: IMovieDetailRouter {
     func navigateToPersonDetailScreen(of personId: Int) {
-        let vc = PersonDetailRouter.setupModule(with: personId)
-        view?.navigationController?.pushViewController(vc, animated: true)
+        let personDetailVC = PersonDetailRouter.setupModule(with: personId)
+        view?.navigationController?.pushViewController(personDetailVC, animated: true)
     }
 
     func navigateToURL(link: String) {
-        print("here link is: \(link)")
         UIApplication.shared.openUrl(link)
     }
 }

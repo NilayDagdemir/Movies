@@ -11,7 +11,6 @@ import Foundation
 class SearchPresenter {
 
     // MARK: Properties
-
     weak var view: ISearchView?
     var router: ISearchRouter?
     var interactor: ISearchInteractor?
@@ -21,7 +20,7 @@ class SearchPresenter {
 
 extension SearchPresenter: ISearchPresenter {
     func viewDidLoad() {}
-    
+
     func filterItems(with searchText: String) {
         view?.closeSearchBar()
         if searchText != "" {
@@ -44,7 +43,7 @@ extension SearchPresenter: ISearchInteractorToPresenter {
         view?.hideProgressHUD()
         view?.showErrorDialog(with: message)
     }
-    
+
     func movieListFiltered(_ filteredList: [Movie]) {
         self.filteredMovies = filteredList
         view?.hideProgressHUD()

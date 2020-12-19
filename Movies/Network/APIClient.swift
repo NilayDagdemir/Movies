@@ -22,7 +22,6 @@ protocol APIClientInterface {
     func getVideos(with movieId: Int, onSuccess: @escaping OnSuccess<VideoList>, onError: OnError)
 }
 
-
 class APIClient: APIClientInterface {
     func getPopularMovies(onSuccess: @escaping OnSuccess<MovieList>, onError: OnError) {
         APIProvider.shared.performRequest(route: .getPopularMovies,

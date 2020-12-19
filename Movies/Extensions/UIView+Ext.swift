@@ -6,7 +6,6 @@
 //  Copyright © 2020 Eda Nilay DAĞDEMİR. All rights reserved.
 //
 
-
 import UIKit
 
 extension UIView {

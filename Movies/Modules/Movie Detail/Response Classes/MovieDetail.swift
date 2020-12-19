@@ -8,6 +8,8 @@
 
 import Foundation
 
+// MARK: - MovieDetail
+// swiftlint:disable identifier_name
 struct MovieDetail: Codable {
     let genres: [Genre]?
     let id: Int?

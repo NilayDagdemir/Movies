@@ -29,9 +29,9 @@ class CastCollectionViewCell: UICollectionViewCell {
         if castItem.profilePath == nil {
             castImageView.image = #imageLiteral(resourceName: "icon_no_image")
         } else if let posterPath = castItem.profilePath {
-            ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath,
-                                                                                           resolution: Constants.PosterProperties.low.resolution),
-                                                                                           imageView: castImageView)
+            let posterURL = Config.getPosterURL(with: posterPath, resolution: Constants.PosterProperties.low.resolution)
+            ImageDownloadManager.shared.downloadImageForImageView(url: posterURL,
+                                                                  imageView: castImageView)
         }
     }
 
@@ -46,6 +46,7 @@ class CastCollectionViewCell: UICollectionViewCell {
         }
 
         contentView.add(subviews: castImageView)
+
         setupConstraints()
     }
 

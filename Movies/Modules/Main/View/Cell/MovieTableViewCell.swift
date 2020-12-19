@@ -33,12 +33,14 @@ class MovieTableViewCell: UITableViewCell {
 
         movieTitleLabel.text = movieItem.title
         detailsImageView.image = #imageLiteral(resourceName: "icon_details")
-        overviewTextView.text = movieItem.overview == "" ? "**No overview exists for this one**" : movieItem.overview
+        overviewTextView.text = movieItem.overview == "" ? Constants.Error.noOverviewTextExists : movieItem.overview
         languageLabel.text = movieItem.language
         releaseDateLabel.text = movieItem.releaseDate
 
         if let posterPath = movieItem.posterPath {
-            ImageDownloadManager.shared.downloadImageForImageView(url: Config.getPosterURL(with: posterPath, resolution: Constants.PosterProperties.low.resolution), imageView: movieImageView)
+            let posterURL = Config.getPosterURL(with: posterPath, resolution: Constants.PosterProperties.low.resolution)
+                ImageDownloadManager.shared.downloadImageForImageView(url: posterURL,
+                                                                      imageView: movieImageView)
         }
     }
 
@@ -52,7 +54,9 @@ class MovieTableViewCell: UITableViewCell {
         movieImageView.contentMode = .scaleToFill
         overviewTextView.isEditable = false
 
-        contentView.add(subviews: movieImageView, movieTitleLabel, detailsImageView, overviewTextView, languageLabel, releaseDateLabel)
+        contentView.add(subviews: movieImageView, movieTitleLabel,
+                                  detailsImageView, overviewTextView,
+                                  languageLabel, releaseDateLabel)
         setupConstraints()
     }
 
@@ -78,6 +82,7 @@ class MovieTableViewCell: UITableViewCell {
         movieTitleLabel.translatesAutoresizingMaskIntoConstraints = false
         movieTitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
         movieTitleLabel.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
+        // swiftlint:disable:next line_length
         movieTitleLabel.trailingAnchor.constraint(equalTo: detailsImageView.leadingAnchor, constant: -20).isActive = true
     }
 
@@ -94,6 +99,7 @@ class MovieTableViewCell: UITableViewCell {
         overviewTextView.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 5).isActive = true
         overviewTextView.leadingAnchor.constraint(equalTo: movieImageView.trailingAnchor, constant: 10).isActive = true
         overviewTextView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        // swiftlint:disable:next line_length
         overviewTextView.bottomAnchor.constraint(lessThanOrEqualTo: languageLabel.topAnchor, constant: -10).isActive = true
     }
 

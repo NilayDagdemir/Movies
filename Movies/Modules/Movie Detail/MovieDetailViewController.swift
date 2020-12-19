@@ -16,6 +16,7 @@ class MovieDetailViewController: UIViewController {
     var adapter: MovieDetailCollectionViewAdapter?
 
     lazy var movieDetailView: MovieDetailView = {
+        // swiftlint:disable:next line_length
         let movieView = MovieDetailView(frame: CGRect(x: 0, y: view.frame.origin.y + 60, width: view.frame.width, height: 500))
         movieView.backgroundColor = .paleGrey
 
@@ -46,7 +47,7 @@ class MovieDetailViewController: UIViewController {
         setupCollectionView()
         setupConstraints()
     }
-    
+
     private func setupCollectionView() {
         movieDetailCollectionView.delegate = adapter
         movieDetailCollectionView.dataSource = adapter
@@ -54,8 +55,6 @@ class MovieDetailViewController: UIViewController {
                                            forCellWithReuseIdentifier: SectionHeaderCell.nameOfClass)
         movieDetailCollectionView.register(CastCollectionViewCell.self,
                                            forCellWithReuseIdentifier: CastCollectionViewCell.nameOfClass)
-//        movieDetailCollectionView.register(VideoSectionHeaderCell.self,
-//                                           withReuseIdentifier: VideoSectionHeaderCollectionViewCell.nameOfClass)
         movieDetailCollectionView.register(VideoCollectionViewCell.self,
                                            forCellWithReuseIdentifier: VideoCollectionViewCell.nameOfClass)
     }
@@ -70,6 +69,7 @@ class MovieDetailViewController: UIViewController {
         movieDetailView.heightAnchor.constraint(equalToConstant: 510).isActive = true
 
         movieDetailCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        // swiftlint:disable:next line_length
         movieDetailCollectionView.topAnchor.constraint(equalTo: movieDetailView.bottomAnchor, constant: 40).isActive = true
         movieDetailCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         movieDetailCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true

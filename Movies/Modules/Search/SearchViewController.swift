@@ -29,7 +29,7 @@ class SearchViewController: UIViewController {
     }
 
     private func commonInit() {
-        title = "Search Movies"
+        title = Constants.Search.navBarTitle
         setupSearchBar()
         setupTableView()
     }
@@ -48,7 +48,8 @@ class SearchViewController: UIViewController {
 
         filteredMovieListTableView?.delegate = adapter
         filteredMovieListTableView?.dataSource = adapter
-        filteredMovieListTableView?.register(MovieTableViewCell.self, forCellReuseIdentifier: MovieTableViewCell.nameOfClass)
+        filteredMovieListTableView?.register(MovieTableViewCell.self,
+                                             forCellReuseIdentifier: MovieTableViewCell.nameOfClass)
 
         filteredMovieListTableView?.pinToEdges(to: view)
     }
@@ -70,7 +71,9 @@ extension SearchViewController: ISearchView {
         searchBar.resignFirstResponder()
         navigationItem.titleView = nil
         searchBar.showsCancelButton = false
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchBar))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                            target: self,
+                                                            action: #selector(showSearchBar))
     }
 }
 
@@ -83,7 +86,7 @@ extension SearchViewController: UISearchBarDelegate {
         if searchBar.text != "" {
             presenter?.filterItems(with: searchBar.text ?? "")
         } else {
-            showErrorDialog(with: "Please enter a movie, genre, or person name.")
+            showErrorDialog(with: Constants.Error.noSearchTextEntered)
         }
     }
 

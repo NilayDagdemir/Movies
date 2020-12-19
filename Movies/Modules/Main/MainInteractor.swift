@@ -19,7 +19,6 @@ extension MainInteractor: IMainInteractor {
     func retrieveMovieList() {
         networkAPI?.getPopularMovies(onSuccess: { [weak self] response in
             guard let self = self else { return }
-            // buradaki 2 results'ı düzelt.
             if let movieList = response.results?.results {
                 self.output?.movieListRecieved(movieList)
             } else {
